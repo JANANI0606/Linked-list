@@ -1,0 +1,226 @@
+Dinesh and his brother share the same PC. Dinesh left the PC under the control of his brother for some days. After few days he finds time to use his PC and was shocked to see his desktop was scattered with folders.
+
+Help Dinesh to arrange the folders in ascending order. Folders are named as numbers in the range between 1 and 100.
+
+Define a structure
+struct file {
+    int number;
+    struct file * link;
+};
+
+Include functions
+
+    void append ( struct file **, int ) ;
+    void display ( struct file * ) ;
+    void ascending ( struct file *);
+        ascending --- arrange the folders in ascending order
+
+
+Refer function specifications for further details.
+[Note: The stmt. 'Elements in the linked list are' should be in the main function.
+
+Input and Output Format:
+Refer sample input and output for formatting specifications.
+[All text in bold corresponds to input and the rest corresponds to output.]
+
+
+Sample Input and Output 1:
+1.Enter a new file
+2.View desktop
+3.Arrange in order
+4.Exit
+Enter your choice
+1
+Enter the file
+100
+1.Enter a new file
+2.View desktop
+3.Arrange in order
+4.Exit
+Enter your choice
+1
+Enter the file
+1
+1.Enter a new file
+2.View desktop
+3.Arrange in order
+4.Exit
+Enter your choice
+1
+Enter the file
+105
+Oops!!! not in the range.
+Enter the file
+50
+1.Enter a new file
+2.View desktop
+3.Arrange in order
+4.Exit
+Enter your choice
+2
+Files are:
+100 1 50
+1.Enter a new file
+2.View desktop
+3.Arrange in order
+4.Exit
+Enter your choice
+3
+Files are:
+1 50 100
+1.Enter a new file
+2.View desktop
+3.Arrange in order
+4.Exit
+Enter your choice
+4
+Exit
+
+Sample Input and Output 2:
+
+1.Enter a new file
+2.View desktop
+3.Arrange in order
+4.Exit
+Enter your choice
+2
+Desktop is Empty
+1.Enter a new file
+2.View desktop
+3.Arrange in order
+4.Exit
+Enter your choice
+3
+Desktop is Empty
+1.Enter a new file
+2.View desktop
+3.Arrange in order
+4.Exit
+Enter your choice
+1
+Enter the file
+15
+1.Enter a new file
+2.View desktop
+3.Arrange in order
+4.Exit
+Enter your choice
+1
+Enter the file
+54
+1.Enter a new file
+2.View desktop
+3.Arrange in order
+4.Exit
+Enter your choice
+3
+Files are:
+15 54
+1.Enter a new file
+2.View desktop
+3.Arrange in order
+4.Exit
+Enter your choice
+4
+Exit
+
+
+
+
+
+
+
+
+
+
+Program:
+
+//assessment 1
+import java.util.Scanner;
+import java.io.*;
+class Node{
+    int data;
+    Node next;
+    Node(int data){
+        this.data=data;
+    }
+}
+class List{
+    Node head,tail;
+    public void insert(int data){
+        Node n=new Node(data);
+        if(head==null){
+            head=n;
+            tail=n;
+        }else{
+            tail.next=n;
+            tail=n;
+        }
+    }
+    public void display(){
+        Node temp=head;
+        if(head==null){
+            System.out.println("Files are empty");
+        }else{
+           while(temp!=null){
+               System.out.println(temp.data+" ");
+               temp=temp.next;
+           }
+        }
+    }
+    public void sort(){
+        Node end=null;
+        boolean swap=true;
+        while(swap){
+            swap=false;
+            Node current =head;
+            while(current.next!=end){
+                if(current.data>current.next.data){
+                    int temp=current.data;
+                    current.data=current.next.data;
+                    current.next.data=temp;
+                    swap=true;
+                }current=current.next;
+            }end=current;
+        }
+    }
+}
+
+public class Main
+{
+public static void main(String[] args) {
+Scanner sc=new Scanner(System.in);
+List l=new List();
+   int choice;
+   do{
+       System.out.println("1.Enter a new file");
+       System.out.println("2.View desktop");
+       System.out.println("3.Arrange in order");
+       System.out.println("4.Exit");
+       System.out.println("Enter your choice:");
+       choice=sc.nextInt();
+       switch(choice){
+           case 1:
+               System.out.println("enter a file:");
+               int data=sc.nextInt();
+               if(data<=100){
+                   l.insert(data);
+               }else{
+                   System.out.println("Not in range");
+               }
+               break;
+            case 2:  
+                System.out.println("Files are:");
+                l.display();
+                break;
+            case 3:
+                l.sort();
+                l.display();
+                break;
+            case 4:
+                System.out.println("Exit");
+                break;
+       }
+   }while(choice!=4);
+}
+}

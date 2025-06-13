@@ -1,0 +1,217 @@
+Nandeep is searching for a media software that uses least memory of his computer system. He googles and finds a list of softwares, it was a long list of softwares with its memory usage. He feels lazy to find the least memory consuming software manually and decides to program a code that finds the software with the least memory from the list.
+
+Help nandeep iterate the list of softwares and get the software with least memory.
+
+Define structure
+struct software {
+    char[15] name;
+    int memory;
+    struct software * link;
+};
+
+Include functions
+
+    void append ( struct software **, int ) ;
+    void display ( struct software * ) ;
+    int findmin (struct software *);
+         findmin --- to find the software which is taking least memory 
+ 
+
+Refer function specifications for further details.
+[Note: The stmt. 'Elements in the linked list are' should be in the main function.
+
+Input and Output Format:
+Refer sample input and output for formatting specifications.
+
+[All text in bold corresponds to input and the rest corresponds to output.]
+
+Sample Input and Output 1:
+1.Insert new software
+2.Display all the softwares
+3.Get the minimum memory software
+4.Exit
+Enter your choice
+1
+Enter the software name
+chrome
+Enter the memory used
+34
+1.Insert new software
+2.Display all the softwares
+3.Get the minimum memory software
+4.Exit
+Enter your choice
+1
+Enter the software name
+winap
+Enter the memory used
+54
+1.Insert new software
+2.Display all the softwares
+3.Get the minimum memory software
+4.Exit
+Enter your choice
+2
+Software list:
+1) chrome 34
+2) winap 54
+1.Insert new software
+2.Display all the softwares
+3.Get the minimum memory software
+4.Exit
+Enter your choice
+3
+Minimum memory Software is:
+chrome 34
+1.Insert new software
+2.Display all the softwares
+3.Get the minimum memory software
+4.Exit
+Enter your choice
+4
+Exit
+
+Sample Input and Output 2:
+1.Insert new software
+2.Display all the softwares
+3.Get the minimum memory software
+4.Exit
+Enter your choice
+2
+Software list is empty
+1.Insert new software
+2.Display all the softwares
+3.Get the minimum memory software
+4.Exit
+Enter your choice
+1
+Enter the software name
+vlc
+Enter the memory used
+65
+1.Insert new software
+2.Display all the softwares
+3.Get the minimum memory software
+4.Exit
+Enter your choice
+1
+Enter the software name
+bluestack         
+Enter the memory used
+54
+1.Insert new software
+2.Display all the softwares
+3.Get the minimum memory software
+4.Exit
+Enter your choice
+2
+Software list:
+1) vlc 65
+2) bluestack 54
+1.Insert new software
+2.Display all the softwares
+3.Get the minimum memory software
+4.Exit
+Enter your choice
+3
+Minimum memory Software is:
+bluestack 54
+1.Insert new software
+2.Display all the softwares
+3.Get the minimum memory software
+4.Exit
+Enter your choice
+4
+Exit
+
+
+
+
+
+
+
+
+
+Program:
+
+//practice 1
+import java.util.Scanner;
+import java.io.*;
+class Node{
+    String data;
+    int mem;
+    Node next;
+   
+}
+class List{
+    Node head,tail;
+    public void insert(String data,int mem){
+        Node n=new Node();
+        n.data=data;
+        n.mem=mem;
+        if(head==null){
+            head=n;
+            tail=n;
+        }else{
+            tail.next=n;
+            tail=n;
+        }
+    }
+    public void display(){
+        Node temp=head;
+        if(head==null){
+            System.out.println("Software are empty");
+        }else{
+           while(temp!=null){
+               System.out.println(temp.data+" "+temp.mem);
+               temp=temp.next;
+           }
+        }}
+        public void min(){
+            Node temp=head;
+            Node min=head;
+            while(temp!=null){
+                if(min.mem>temp.mem){
+                    min=temp;
+                }temp=temp.next;
+            }System.out.println(min.data+" "+min.mem);
+        }
+   
+    }
+
+public class Main
+{
+public static void main(String[] args) {
+   List l=new List();
+   Scanner sc=new Scanner(System.in);
+   int choice;
+   do{
+       System.out.println("1.Insert new software");
+       System.out.println("2.Display new software");
+       System.out.println("3.Get the minimum software");
+       System.out.println("4.Exit");
+       System.out.println("Enter choice");
+       choice=sc.nextInt();
+       switch(choice){
+           case 1:
+               System.out.println("Enter the software name:");
+               String data=sc.next();
+               System.out.println("enter the memory used:");
+               int mem=sc.nextInt();
+               l.insert(data,mem);
+               break;
+          case 2:
+              System.out.println("Software list:");
+              l.display();
+              break;
+          case 3:
+              System.out.println("Minimum memory software is:");
+              l.min();
+              break;
+          case 4:
+              System.out.println("Exit");
+             
+       }
+   }while(choice!=4);
+}
+}

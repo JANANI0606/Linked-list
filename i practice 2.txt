@@ -1,0 +1,165 @@
+You got a keyboard of a computer that wasn't used since 20 years and the keys were not in correct place. You are find it interesting in assembling the keys of the keyboard. You decide to arrange the number keys first in order.
+
+Keyboard keys range only from 0 to 9, arrange in ascending order while insert.
+Note : If the input number is greater than the given range take input until the preferred number is given.
+
+
+Define a structure
+struct keyboard {
+    int key;
+    struct keyboard * link;
+};
+
+Include Functions:
+void insert ( struct keyboard **, int ) ;
+void display ( struct keyboard * ) ;
+
+insert --- to insert the keys in ascending order while inserting in the keyboard
+
+Refer function specifications for further details.
+[Note: The stmt. 'Elements in the linked list are' should be in the main function.
+
+Input and Output Format:
+Refer sample input output for further details.
+[All text in bold corresponds to input and the rest corresponds to output.]
+
+Sample Input and Output 1:
+1.Enter a disassembled key
+2.View keyboard
+3.Exit
+Enter your choice
+1
+Enter the key number
+10
+Enter the key number
+1
+1.Enter a disassembled key
+2.View keyboard
+3.Exit
+Enter your choice
+1
+Enter the key number
+9
+1.Enter a disassembled key
+2.View keyboard
+3.Exit
+Enter your choice
+1
+Enter the key number
+5
+1.Enter a disassembled key
+2.View keyboard
+3.Exit
+Enter your choice
+2
+Keyboard:
+1 5 9
+1.Enter a disassembled key
+2.View keyboard
+3.Exit
+Enter your choice
+3
+Exit
+
+Sample Input and Output 2:
+1.Enter a disassembled key
+2.View keyboard
+3.Exit
+Enter your choice
+2
+Keyboard has no disassembled key
+1.Enter a disassembled key
+2.View keyboard
+3.Exit
+Enter your choice
+3
+Exit
+
+
+
+
+
+
+Program:
+
+//practice 2
+import java.util.Scanner;
+import java.io.*;
+class Node{
+    int data;
+    Node next;
+    Node(int data){
+        this.data=data;
+    }
+}
+class List{
+    Node head,tail;
+    public void insert(int data){
+        Node n=new Node(data);
+        if(head==null){
+            head=n;
+            tail=n;
+        }else{
+            tail.next=n;
+            tail=n;
+        }
+    }
+    public void display(){
+        Node temp=head;
+        if(head==null){
+            System.out.println("keys are empty");
+        }else{
+           while(temp!=null){
+               System.out.println(temp.data+" ");
+               temp=temp.next;
+           }
+        }
+    }
+    public void sort(){
+        Node end=null;
+        boolean swap=true;
+        while(swap){
+            swap=false;
+            Node current =head;
+            while(current.next!=end){
+                if(current.data>current.next.data){
+                    int temp=current.data;
+                    current.data=current.next.data;
+                    current.next.data=temp;
+                    swap=true;
+                }current=current.next;
+            }end=current;
+        }
+    }
+}
+
+public class Main
+{
+public static void main(String[] args) {
+   Scanner sc=new Scanner(System.in);
+   List l=new List();
+   int choice;
+   do{
+       System.out.println("1.Enter the disassembled key");
+       System.out.println("2.View keyboard");
+       System.out.println("3.Exit");
+       System.out.println("Enter choice:");
+       choice=sc.nextInt();
+       switch(choice){
+           case 1:
+               System.out.println("Enter the key:");
+               int data=sc.nextInt();
+               l.insert(data);
+               break;
+          case 2:
+              System.out.println("Keyboard:");
+              l.sort();
+              l.display();
+              break;
+          case 3:
+              System.out.println("Exit");
+             
+       }
+   }while(choice!=3);
+}
+}

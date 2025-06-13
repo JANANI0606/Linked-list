@@ -1,0 +1,188 @@
+A stock management company asks for a mobile application that manages the goods deliverable details. The list of goods to be delivered for the day should be updated into the application according to the goods delivery time. Once a good is delivered, it has to be removed from the application.
+
+Write a program to insert the goods into the list and delete the goods in the order it was inserted.
+
+Define a structure
+struct stock
+{
+   int good_number;
+   struct stock* link;
+}
+
+Include functions
+    void append(struct stock** ,int );
+    void display(struct stock* );
+    void deleteatbegining(struct stock* );
+ 
+Note: In display method, if the list is empty, print "Stock list is empty".
+
+Input and Output Format:
+
+Refer sample input and output for formatting specifications.
+
+Sample Input and Output:
+
+[All text in bold corresponds to input and the rest corresponds to output.]
+
+Sample Input and Output 1:
+1.Add goods to be delivered
+2.List the goods
+3.Delivered a good
+4.Exit
+Enter your choice
+1
+Enter the stock id
+1
+1.Add goods to be delivered
+2.List the goods
+3.Delivered a good
+4.Exit
+Enter your choice
+1
+Enter the stock id
+2
+1.Add goods to be delivered
+2.List the goods
+3.Delivered a good
+4.Exit
+Enter your choice
+1
+Enter the stock id
+3
+1.Add goods to be delivered
+2.List the goods
+3.Delivered a good
+4.Exit
+Enter your choice
+2
+Stock list:
+1 2 3
+1.Add goods to be delivered
+2.List the goods
+3.Delivered a good
+4.Exit
+Enter your choice
+3
+Successfully delivered
+Stock list:
+2 3
+1.Add goods to be delivered
+2.List the goods
+3.Delivered a good
+4.Exit
+Enter your choice
+4
+Exit
+
+Sample Input and Output 2:
+1.Add goods to be delivered
+2.List the goods
+3.Delivered a good
+4.Exit
+Enter your choice
+1
+Enter the stock id
+1
+1.Add goods to be delivered
+2.List the goods
+3.Delivered a good
+4.Exit
+Enter your choice
+2
+Stock list:
+1
+1.Add goods to be delivered
+2.List the goods
+3.Delivered a good
+4.Exit
+Enter your choice
+3
+Successfully delivered
+Stock list is empty
+1.Add goods to be delivered
+2.List the goods
+3.Delivered a good
+4.Exit
+Enter your choice
+4
+Exit
+
+
+
+
+
+Program:
+//practice 5
+import java.util.Scanner;
+import java.io.*;
+class Node{
+    int data;
+    Node next;
+    Node(int data){
+        this.data=data;
+    }
+}
+class List{
+    Node head,tail;
+    public void insert(int data){
+        Node n=new Node(data);
+        if(head==null){
+            head=n;
+            tail=n;
+        }else{
+            tail.next=n;
+            tail=n;
+        }
+    }
+    public void display(){
+        Node temp=head;
+        if(head==null){
+            System.out.println("Stock is empty");
+        }else{
+           while(temp!=null){
+               System.out.println(temp.data+" ");
+               temp=temp.next;
+           }
+        }
+    }
+    public void delatbegin(){
+        head=head.next;
+    }}
+public class Main
+{
+public static void main(String[] args) {
+   Scanner sc=new Scanner(System.in);
+   List l=new List();
+   int choice;
+   do{
+       System.out.println("1.Add goods to be delivered");
+       System.out.println("2.List the goods");
+       System.out.println("3.Delivered a good");
+       System.out.println("3.Exit");
+       System.out.println("Enter choice:");
+       choice=sc.nextInt();
+       switch(choice){
+           case 1:
+               System.out.println("Enter the stock id:");
+               int data=sc.nextInt();
+               l.insert(data);
+               break;
+          case 2:
+              System.out.println("Stock list:");
+           
+              l.display();
+              break;
+          case 3:
+              l.delatbegin();
+              System.out.println("Delivered a good");
+              System.out.println("Stock list:");
+             
+              l.display();
+              break;
+          case 4:
+              System.out.println("Exit");
+             
+       }
+   }while(choice!=3);
+}
+}
