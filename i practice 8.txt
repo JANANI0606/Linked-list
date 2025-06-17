@@ -1,0 +1,219 @@
+Linked List : Print Lots
+
+Write a Java program to print a range of elements in a linked list.
+
+The 1st element in the LL is denoted by position 1.
+
+Create a class named LinkedList and include the following methods
+
+Method Name	Description
+void addNode(int data)	This method takes the data to be appended in the linked list and adds the given data at the end of the linked list.
+void display()	This method displays the contents of the linked  list.
+void printlots()	This method to print a range of elements in the linked list.
+
+Refer function specifications for further details.
+
+Input and Output Format:
+
+Refer sample input and output for formatting specifications.
+
+ 
+
+Sample Input and Output 1:
+
+[All text in bold corresponds to input and the rest corresponds to output.]
+
+Enter the value
+
+2
+
+Do you want to add another node? Type Yes/No
+
+Yes
+
+Enter the value
+
+4
+
+Do you want to add another node? Type Yes/No
+
+Yes
+
+Enter the value
+
+6
+
+Do you want to add another node? Type Yes/No
+
+Yes
+
+Enter the value
+
+8
+
+Do you want to add another node? Type Yes/No
+
+Yes
+
+Enter the value
+
+0
+
+Do you want to add another node? Type Yes/No
+
+No
+
+The elements in the linked list are 2 4 6 8 0
+
+Enter the range of elements to print
+
+2
+
+4
+
+The elements in the range 2 to 4 are
+
+4 6 8
+
+ 
+
+Sample Input and Output 2:
+
+[All text in bold corresponds to input and the rest corresponds to output.]
+
+ 
+
+Enter the value
+
+2
+
+Do you want to add another node? Type Yes/No
+
+Yes
+
+Enter the value
+
+4
+
+Do you want to add another node? Type Yes/No
+
+Yes
+
+Enter the value
+
+6
+
+Do you want to add another node? Type Yes/No
+
+Yes
+
+Enter the value
+
+8
+
+Do you want to add another node? Type Yes/No
+
+Yes
+
+Enter the value
+
+0
+
+Do you want to add another node? Type Yes/No
+
+No
+
+The elements in the linked list are 2 4 6 8 0
+
+Enter the range of elements to print
+
+2
+
+7
+
+Invalid Range
+
+
+
+LinkedList.java:
+public class LinkedList {
+    class Node {
+        int data;
+        Node next;
+        Node(int data) {
+            this.data = data;
+        }
+    }
+    Node head = null;
+    public void addNode(int data) {
+        Node newNode = new Node(data);
+        if (head == null)
+            head = newNode;
+        else {
+            Node temp = head;
+            while (temp.next != null)
+                temp = temp.next;
+            temp.next = newNode;
+        }
+    }
+    public void display() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(" " + temp.data);
+            temp = temp.next;
+        }
+        System.out.println();
+    }
+    public void printlots(int start, int end) {
+        Node temp = head;
+        int pos = 1;
+        int count = 0;
+        Node t = head;
+        while (t != null) {
+            count++;
+            t = t.next;
+        }
+        if (start < 1 || end > count || start > end) {
+            System.out.println("Invalid Range");
+            return;
+        }
+        System.out.println("The elements in the range " + start + " to " + end + " are");
+        while (temp != null) {
+            if (pos >= start && pos <= end) {
+                System.out.print(temp.data + " ");
+            }
+            temp = temp.next;
+            pos++;
+        }
+        System.out.println();
+    }
+}
+
+
+Main.java:
+import java.util.*;
+public class Main{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String ch="";
+        LinkedList list = new LinkedList();
+        do{
+        System.out.println("Enter the value");
+        int n = sc.nextInt();
+        sc.nextLine();
+        //Fill your code here
+        list.addNode(n);
+        System.out.println("Do you want to add another node? Type Yes/No");
+        ch = sc.nextLine();
+        }while(ch.equals("Yes")); 
+
+        System.out.print("The elements in the linked list are");
+	//Fill your code here
+    list.display();
+	System.out.println("\nEnter the range of elements to print");
+	int start = sc.nextInt();
+	int end = sc.nextInt();
+	//Fill your code here
+    list.printlots(start,end);
+	}
+}
