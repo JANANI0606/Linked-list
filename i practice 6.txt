@@ -1,0 +1,135 @@
+Linked List – Reverse
+
+ 
+Write a Java program to reverse a linked list.
+ 
+ 
+
+Create a class named LinkedList and include the following methods
+
+Method Name	Description
+void addNode(int data)	This method takes the data to be appended in the linked list and adds the given data at the end of the linked list.
+void display()	This method displays the contents of the linked  list.
+void reverse()	This method to reverse the linked list.
+ 
+
+Note: Refer function specifications for further details.
+ 
+Input and Output Format:
+Refer sample input and output for formatting specifications.
+ 
+Sample Input and Output:
+[All text in bold corresponds to input and the rest corresponds to output.]
+ 
+Enter the value
+5
+Do you want to add another node? Type Yes/No
+Yes
+Enter the value
+9
+Do you want to add another node? Type Yes/No
+Yes
+Enter the value
+2
+Do you want to add another node? Type Yes/No
+Yes
+Enter the value
+8
+Do you want to add another node? Type Yes/No
+No
+The elements in the linked list are 5 9 2 8
+The elements in the reversed linked list are 8 2 9 5
+
+
+
+
+
+LinkedList.java:
+import java.util.*;
+class Node{
+	int data;
+	Node next;
+	Node(int data){
+		this.data=data;
+	}
+}
+public class LinkedList{
+	Node head,tail;
+	public void addNode(int data){
+	/* fill your code here */
+
+	
+    	
+        /* Fill your code here */
+
+		Node n=new Node(data);
+		if(head==null){
+		
+			head=n;
+			tail=n;
+		}else{
+		
+			tail.next=n;
+			tail=n;
+		}
+	}
+
+	public void display(){
+	/* fill your code here */
+	Node temp=head;
+		if(head==null){
+			System.out.println("List is empty");
+		} else{
+			while(temp!=null){
+				System.out.print(" "+temp.data);
+				temp=temp.next;
+			}
+		}
+	
+	}
+
+	public void reverse()
+	{
+	/* Fill your code here */
+	Node prev=null,next=null;
+	
+	Node current=head;
+	while(current!=null){
+		next=current.next;
+		current.next=prev;
+        prev=current;
+		current=next;
+	}head=prev;
+	}
+	
+}
+
+
+
+
+Main.java:
+import java.util.*;
+public class Main{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String ch="";
+        LinkedList list = new LinkedList();
+        do{
+        System.out.println("Enter the value");
+        int n = sc.nextInt();
+        //Fill your code here
+        sc.nextLine();
+        list.addNode(n);
+        System.out.println("Do you want to add another node? Type Yes/No");
+        ch = sc.nextLine();
+        }while(ch.equals("Yes")); 
+        System.out.print("The elements in the linked list are ");
+        list.display();
+        System.out.print("\n");
+        System.out.print("The elements in the reversed linked list are ");
+        list.reverse();
+        list.display();
+
+        //Fill your code here
+	}
+}

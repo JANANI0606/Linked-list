@@ -1,0 +1,170 @@
+Linked List : Delete any element
+
+ 
+
+Write a Java program to delete a particular element in the Linked List.
+
+
+Create a class named LinkedList and include the following methods
+
+Method Name	Description
+void addNode(int data)	This method takes the data to be appended in the linked list and adds the given data at the end of the linked list.
+void display()	This method displays the contents of the linked  list.
+void delete(int element)	This method to delete the element from the linked list.
+
+Refer function specifications for further details.
+
+Note:
+The display lables,
+“The elements in the linked list are”
+“The elements in the linked list after deleting the element are”
+should be in main().
+
+Input and Output Format:
+
+Refer sample input and output for formatting specifications.
+
+ 
+
+Sample Input and Output:
+
+[All text in bold corresponds to input and the rest corresponds to output.]
+
+Enter the value
+
+4
+
+Do you want to add another node? Type Yes/No
+
+Yes
+
+Enter the value
+
+1
+
+Do you want to add another node? Type Yes/No
+
+Yes
+
+Enter the value
+
+8
+
+Do you want to add another node? Type Yes/No
+
+Yes
+
+Enter the value
+
+1
+
+Do you want to add another node? Type Yes/No
+
+No
+
+The elements in the linked list are 4 1 8 1
+
+Enter the element to be deleted
+
+8
+
+The elements in the linked list after deleting the element are 4 1 1
+
+
+
+
+
+
+LinkedList.java:
+import java.util.*;
+class Node{
+	int data;
+	Node next;
+	Node(int data){
+		this.data=data;
+	}
+}
+public class LinkedList{
+
+	/* fill your code here */
+	Node head,tail;
+	
+    	public void addNode(int data) {
+        /* Fill your code here */
+
+		Node n=new Node(data);
+		if(head==null){
+		
+			head=n;
+			tail=n;
+		}else{
+		
+			tail.next=n;
+			tail=n;
+		}
+	}
+
+	public void display(){
+	/* fill your code here */
+	Node temp=head;
+		
+			while(temp!=null){
+				System.out.print(" "+temp.data);
+				temp=temp.next;
+			}
+		}
+	
+
+	public void delete(int element)
+	{
+	/* Fill your code here */
+	if(head.data==element){
+		head=head.next;
+		return ;
+	}
+	Node temp=head;
+	while(temp.next!=null){
+           if(temp.next.data==element){
+			   Node del=temp.next;
+			   temp.next=temp.next.next;
+			   del=null;
+			   return ;
+		   }temp=temp.next;
+	}
+	}
+	
+}
+
+
+
+Main.java:
+import java.util.*;
+public class Main{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String ch="";
+        LinkedList list = new LinkedList();
+        do{
+        System.out.println("Enter the value");
+        int n = sc.nextInt();
+        sc.nextLine();
+        //Fill your code here
+        list.addNode(n);
+        System.out.println("Do you want to add another node? Type Yes/No");
+        ch = sc.nextLine();
+        }while(ch.equals("Yes")); 
+
+        //Fill your code here
+        System.out.print("The elements in the linked list are ");
+        list.display();
+        System.out.print("\n");
+
+	System.out.println("\nEnter the element to be deleted"); 
+	int element = sc.nextInt();
+   
+	//Fill your code here
+    list.delete(element);
+    System.out.print("The elements in the linked list after deleting the element are ");
+    list.display();
+	}
+}

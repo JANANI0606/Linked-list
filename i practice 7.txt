@@ -1,0 +1,169 @@
+Linked List : Append if no duplicates
+
+Write a Java program to append an element to a linked list if the element is not already present in the linked list.
+
+Define a class
+
+class Node
+        {
+            int data;
+            Node next = null;
+            Node(int data)
+            {
+                this.data = data;
+            }
+        }
+
+Create a class named LinkedList and include the following methods
+
+Method Name	Description
+void addNode(int data)	This method takes the data to be appended in the linked list and adds the given data at the end of the linked list.
+void display()	This method displays the contents of the linked  list.
+ 
+
+Input and Output Format:
+
+Refer sample input and output for formatting specifications.
+
+[All text in bold corresponds to input and the rest corresponds to output.]
+
+ 
+
+Sample Input and Output:
+
+Enter the value
+
+6
+
+Do you want to add another node? Type Yes/No
+
+Yes
+
+Enter the value
+
+3
+
+Do you want to add another node? Type Yes/No
+
+Yes
+
+Enter the value
+
+9
+
+Do you want to add another node? Type Yes/No
+
+Yes
+
+Enter the value
+
+4
+
+Do you want to add another node? Type Yes/No
+
+Yes
+
+Enter the value
+
+9
+
+Do you want to add another node? Type Yes/No
+
+Yes
+
+Enter the value
+
+10
+
+Do you want to add another node? Type Yes/No
+
+No
+
+The elements in the linked list are 6 3 9 4 10
+
+
+
+
+LinkedList.java:
+import java.util.*;
+class Node{
+	int data;
+	Node next;
+	Node(int data){
+		this.data=data;
+	}
+}
+public class LinkedList{
+
+
+	/* fill your code here */
+	Node head,tail;
+	
+	
+	public void addNode(int data){
+	/* fill your code here */
+	Node temp=head;
+              while(temp!=null){
+           if(temp.data==data){
+			   return ;
+		   }temp=temp.next;
+			  }
+	      
+    	
+        /* Fill your code here */
+		
+
+		Node n=new Node(data);
+		
+		if(head==null){
+		
+			head=n;
+			tail=n;
+
+		}else{
+        
+				tail.next=n;
+				tail=n;
+			}
+	
+	}
+	public void display(){
+	/* fill your code here */
+	Node temp=head;
+		if(head==null){
+			System.out.println("List is empty");
+		} else{
+			while(temp!=null){
+				System.out.print(" "+temp.data);
+				temp=temp.next;
+			}
+		}
+	
+	}
+
+	}
+
+	
+
+Main.java:
+import java.util.*;
+public class Main{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String ch="";
+        LinkedList list = new LinkedList();
+        do{
+        System.out.println("Enter the value");
+        int n = sc.nextInt();
+        //Fill your code here
+        sc.nextLine();
+        list.addNode(n);
+        System.out.println("Do you want to add another node? Type Yes/No");
+        ch = sc.nextLine();
+        }while(ch.equals("Yes")); 
+
+        //Fill your code here
+        System.out.print("The elements in the linked list are ");
+        list.display();
+	}
+}
